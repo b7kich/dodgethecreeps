@@ -1,62 +1,31 @@
-# Godot demo projects
+# Dodge the Creeps
 
-Each folder containing a `project.godot` file is a demo project meant to
-be used with [Godot Engine](https://godotengine.org), the open source
-2D and 3D game engine.
+This is a simple game where your character must move
+and avoid the enemies for as long as possible.
 
-## Godot versions
+This is a finished version of the game featured in the
+["Your first 2D game"](https://docs.godotengine.org/en/latest/getting_started/first_2d_game/index.html)
+tutorial in the documentation. For more details,
+consider following the tutorial in the documentation.
 
-- The [`master`](https://github.com/godotengine/godot-demo-projects) branch is compatible with Godot's `master` development branch (next 4.x release).
-- The [`3.x`](https://github.com/godotengine/godot-demo-projects/tree/3.x) branch is compatible with Godot's `3.x` development branch (next 3.x release).
-- The other branches are compatible with the matching stable versions of Godot:
-  - [`4.2`](https://github.com/godotengine/godot-demo-projects/tree/4.2)
-    branch for Godot 4.2.x.
-  - [`4.1`](https://github.com/godotengine/godot-demo-projects/tree/4.1)
-    branch for Godot 4.1.x.
-  - [`4.0`](https://github.com/godotengine/godot-demo-projects/tree/4.0)
-    branch for Godot 4.0.x.
-  - [`3.5`](https://github.com/godotengine/godot-demo-projects/tree/3.5)
-    branch for Godot 3.5.x.
-  - [`3.4`](https://github.com/godotengine/godot-demo-projects/tree/3.4)
-    branch for Godot 3.4.x.
-  - [`3.3`](https://github.com/godotengine/godot-demo-projects/tree/3.3)
-    branch for Godot 3.3.x.
-  - [`3.2`](https://github.com/godotengine/godot-demo-projects/tree/3.2)
-    branch for Godot 3.2.x.
-  - [`3.1`](https://github.com/godotengine/godot-demo-projects/tree/3.1)
-    branch for Godot 3.1.x.
-  - [`3.0`](https://github.com/godotengine/godot-demo-projects/tree/3.0)
-    branch for Godot 3.0.x.
-  - [`2.1`](https://github.com/godotengine/godot-demo-projects/tree/2.1)
-    branch for Godot 2.1.x.
+Language: GDScript
 
-## Importing all demos
+Renderer: Compatibility
 
-To import all demos at once in the project manager:
+Note: There is a C# version available [here](https://github.com/godotengine/godot-demo-projects/tree/master/mono/dodge_the_creeps).
 
-- Clone this repository or [download a ZIP archive](https://github.com/godotengine/godot-demo-projects/archive/master.zip).
-  - If you've downloaded a ZIP archive, extract it somewhere.
-- Open the Godot project manager and click the **Scan** button on the right.
-- Choose the path to the folder containing all demos.
-- All demos should now appear in the project manager.
+Check out this demo on the asset library: https://godotengine.org/asset-library/asset/2712
 
-## Try the demos in your browser
+## Screenshots
 
-Most of the demos are exported to GitHub Pages. They can be viewed
-[here](https://godotengine.github.io/godot-demo-projects/).
+![GIF from the documentation](https://docs.godotengine.org/en/latest/_images/dodge_preview.gif)
 
-**Note:** The performance of Godot in a browser is lower than natively on
-desktop. For the best performance, consider downloading the demos.
+![Screenshot](screenshots/dodge.png)
 
-## Useful links
+## Copying
 
-- [Main website](https://godotengine.org)
-- [Source code](https://github.com/godotengine/godot)
-- [Documentation](http://docs.godotengine.org)
-- [Community hub](https://godotengine.org/community)
-- [TPS demo](https://github.com/godotengine/tps-demo)
+`art/House In a Forest Loop.ogg` Copyright &copy; 2012 [HorrorPen](https://opengameart.org/users/horrorpen), [CC-BY 3.0: Attribution](http://creativecommons.org/licenses/by/3.0/). Source: https://opengameart.org/content/loop-house-in-a-forest
 
-## License
+Images are from "Abstract Platformer". Created in 2016 by kenney.nl, [CC0 1.0 Universal](http://creativecommons.org/publicdomain/zero/1.0/). Source: https://www.kenney.nl/assets/abstract-platformer
 
-Those demos are distributed under the terms of the MIT license, as
-described in the [LICENSE.md](LICENSE.md) file.
+Font is "Xolonium". Copyright &copy; 2011-2016 Severin Meyer <sev.ch@web.de>, with Reserved Font Name Xolonium, SIL open font license version 1.1. Details are in `fonts/LICENSE.txt`.
