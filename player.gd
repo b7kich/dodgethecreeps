@@ -21,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 	position.x = clamp(position.x, margins.x, margins.w)
 	position.y = clamp(position.y, margins.y, margins.z)
 	
-	if velocity.x != 0:
+	if velocity.x != 0 && abs(velocity.x*1.5) > abs(velocity.y):
 		$AnimatedSprite2D.animation = "right"
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 		$AnimatedSprite2D.flip_v = false
