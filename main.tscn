@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyfwty2q3rdse"]
+[gd_scene load_steps=11 format=3 uid="uid://cyfwty2q3rdse"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_0r6n5"]
 [ext_resource type="PackedScene" uid="uid://rkdnhqgf2hpj" path="res://mob.tscn" id="2_50pww"]
+[ext_resource type="Script" path="res://touchscreenjoystick/scripts/touch_screen_joystick.gd" id="3_god6m"]
 [ext_resource type="PackedScene" uid="uid://4vwrqjegqwpj" path="res://player.tscn" id="3_veqnc"]
 [ext_resource type="PackedScene" uid="uid://ccqoreueuxdb7" path="res://hud.tscn" id="4_0qnje"]
+[ext_resource type="Texture2D" uid="uid://3s2n2pi4u3p4" path="res://touchscreenjoystick/textures/VirtualJoystickPack/JoystickSplitted.png" id="4_aeufb"]
 [ext_resource type="AudioStream" uid="uid://q2pf4fr8d0ks" path="res://art/House In a Forest Loop.ogg" id="5_55d8h"]
+[ext_resource type="Texture2D" uid="uid://1f45s46ro0ua" path="res://touchscreenjoystick/textures/VirtualJoystickPack/LargeHandleFilled.png" id="5_ysxb0"]
 [ext_resource type="AudioStream" uid="uid://dw26fpygeag8o" path="res://art/gameover.wav" id="6_hp1r0"]
 
 [sub_resource type="Curve2D" id="1"]
@@ -16,6 +19,33 @@ point_count = 5
 [node name="Main" type="Node"]
 script = ExtResource("1_0r6n5")
 mob_scene = ExtResource("2_50pww")
+
+[node name="Screen" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Joystick" type="Control" parent="Screen"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(240, 360)
+script = ExtResource("3_god6m")
+use_textures = true
+base_texture = ExtResource("4_aeufb")
+base_scale = 0.5
+knob_texture = ExtResource("5_ysxb0")
+knob_scale = 0.5
+mode = 1
+change_opacity_when_touched = true
+from_opacity = 0.0
+to_opacity = 30.0
+use_input_actions = true
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_up"
+action_down = "move_down"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

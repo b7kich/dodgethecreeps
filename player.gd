@@ -1,54 +1,50 @@
-extends Area2D
-
+extends CharacterBody2D
 signal hit
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
-var screen_size # Size of the game window.
 
-func _ready():
-	screen_size = get_viewport_rect().size
-	hide()
+var margins : Vector4
 
-
-func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
-	if Input.is_action_pressed(&"move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed(&"move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed(&"move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed(&"move_up"):
-		velocity.y -= 1
-
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+func _physics_process(_delta: float) -> void:
+	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
+	if dir:
+		velocity = dir * speed
 		$AnimatedSprite2D.play()
 	else:
+		velocity.x = move_toward(velocity.x, 0,speed)
+		velocity.y = move_toward(velocity.y, 0,speed)
 		$AnimatedSprite2D.stop()
-
-	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
-
+	
+	move_and_slide()
+	checkHit()
+		
+	position.x = clamp(position.x, margins.x, margins.w)
+	position.y = clamp(position.y, margins.y, margins.z)
+	
 	if velocity.x != 0:
-		$AnimatedSprite2D.animation = &"right"
-		$AnimatedSprite2D.flip_v = false
-		$Trail.rotation = 0
+		$AnimatedSprite2D.animation = "right"
 		$AnimatedSprite2D.flip_h = velocity.x < 0
+		$AnimatedSprite2D.flip_v = false
 	elif velocity.y != 0:
-		$AnimatedSprite2D.animation = &"up"
-		rotation = PI if velocity.y > 0 else 0
+		$AnimatedSprite2D.animation = "up"
+		$AnimatedSprite2D.flip_v = velocity.y > 0
 
 
-func start(pos):
-	position = pos
-	rotation = 0
+func checkHit() -> void:
+	if get_slide_collision_count()>0: 
+		hit.emit()	
+	
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	place();
+
+func place() -> void:
+	var viewport_size = viewport()
+	var half_char_size = get_node("CollisionShape2D").shape.get_rect().size / 2
+	margins = Vector4(half_char_size.x,half_char_size.y,viewport_size.y-half_char_size.y,viewport_size.x-half_char_size.x)
+	position = viewport_size /2
+	position.y += 200
 	show()
-	$CollisionShape2D.disabled = false
-
-
-func _on_body_entered(_body):
-	hide() # Player disappears after being hit.
-	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
-	$CollisionShape2D.set_deferred(&"disabled", true)
+	
+func viewport() -> Vector2:
+	return get_viewport_rect().size
