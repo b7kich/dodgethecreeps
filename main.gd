@@ -3,38 +3,61 @@ extends Node
 @export var mob_scene: PackedScene
 var score
 
-func game_over():
-	$ScoreTimer.stop()
-	$MobTimer.stop()
-	$HUD.show_game_over()
+func _ready() -> void:
 	$Player.hide()
-	$Music.stop()
-	$DeathSound.play()
-	
+
+
 func new_game():
-	get_tree().call_group(&"mobs", &"queue_free")
 	score = 0
-	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
+	$StartTimer.start()
+	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
 	$Player.place()
+	
+func game_over() -> void:
+	$Music.stop()
+	$DeathSound.play()
+	$HUD.show_game_over("Game Over", "Dodge the Creeps!")
+	$ScoreTimer.stop()
+	$MobTimer.stop()
+	$Player.hide()
+	
+
+func _on_start_timer_timeout() -> void:
+	$MobTimer.start()
+	$ScoreTimer.start()
+
+func _on_score_timer_timeout() -> void:
+	score += 1
+	$HUD.update_score(score)
 
 
-
-func _on_MobTimer_timeout():
+func _on_mob_timer_timeout() -> void:
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
 
-	# Choose a random location on Path2D.
-	var mob_spawn_location = get_node(^"MobPath/MobSpawnLocation")
-	mob_spawn_location.progress = randi()
+	var rect : Vector2
+	var center : Vector2
+	
+	# FIXME
+	# issue: Function "get_viewport_rect()" not found in base self.
+	rect = $Player.viewport()
+	center = rect / 2
 
+	if 0 == randi() % 2:
+		rect.x*= randi() % 2
+		rect.y*= randf()
+	else:
+		rect.y*=randi() % 2
+		rect.x*= randf()
+	
 	# Set the mob's position to a random location.
-	mob.position = mob_spawn_location.position
+	mob.position = rect
 
-	# Set the mob's direction perpendicular to the path direction.
-	var direction = mob_spawn_location.rotation + PI / 2
+	# point the mob inside at quarter radians (90 degrees) 
+	var direction = roundf((center-rect).angle() * 4.0 / PI ) * PI / 4.0
 
 	# Add some randomness to the direction.
 	direction += randf_range(-PI / 4, PI / 4)
@@ -46,12 +69,3 @@ func _on_MobTimer_timeout():
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
-
-func _on_ScoreTimer_timeout():
-	score += 1
-	$HUD.update_score(score)
-
-
-func _on_StartTimer_timeout():
-	$MobTimer.start()
-	$ScoreTimer.start()
