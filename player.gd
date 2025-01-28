@@ -4,6 +4,7 @@ signal hit
 @export var speed = 400 # How fast the player will move (pixels/sec).
 
 var margins : Vector4
+var alive = true;
 
 func _physics_process(_delta: float) -> void:
 	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
@@ -31,8 +32,9 @@ func _physics_process(_delta: float) -> void:
 
 
 func checkHit() -> void:
-	if get_slide_collision_count()>0: 
-		hit.emit()	
+	if alive && get_slide_collision_count()>0:
+		alive = false
+		hit.emit()
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,6 +47,7 @@ func place() -> void:
 	position = viewport_size /2
 	position.y += 200
 	show()
+	alive = true
 	
 func viewport() -> Vector2:
 	return get_viewport_rect().size
