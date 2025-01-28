@@ -29,3 +29,6 @@ Check out this demo on the asset library: https://godotengine.org/asset-library/
 Images are from "Abstract Platformer". Created in 2016 by kenney.nl, [CC0 1.0 Universal](http://creativecommons.org/publicdomain/zero/1.0/). Source: https://www.kenney.nl/assets/abstract-platformer
 
 Font is "Xolonium". Copyright &copy; 2011-2016 Severin Meyer <sev.ch@web.de>, with Reserved Font Name Xolonium, SIL open font license version 1.1. Details are in `fonts/LICENSE.txt`.
+
+[touchscreenjoystick](https://github.com/kntCyc1230/TouchScreenJoystick) is Copyright (c) Kent Aljo G. Coyoca, [MIT LICENSE](./touchscreenjoystick/LICENSE.md)
+
