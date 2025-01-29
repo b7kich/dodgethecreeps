@@ -79,7 +79,15 @@ body {
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 <link rel="manifest" href="index.manifest.json">
-
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.body.insertAdjacentHTML("beforeend", `
+        <div id="overlay" style="z-index:999;display:block;position:fixed;bottom:10px;right:10px;">
+          <a href="legal.html" style="font-size:18px;color:white;text-decoration:none;" title="legal" alt="legal" target="_blank">§</a>
+        </div>
+      `);
+    });
+  </script>
 	</head>
 	<body>
 		<canvas id="canvas">
@@ -98,7 +106,7 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":2193040,"index.wasm":33829596},"focusCanvas":true,"gdextensionLibs":[],"serviceWorker":"index.service.worker.js"};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":3024800,"index.wasm":33829596},"focusCanvas":true,"gdextensionLibs":[],"serviceWorker":"index.service.worker.js"};
 const GODOT_THREADS_ENABLED = true;
 const engine = new Engine(GODOT_CONFIG);
 
