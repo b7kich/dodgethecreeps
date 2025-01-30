@@ -6,7 +6,6 @@ var score
 func _ready() -> void:
 	$Player.hide()
 
-
 func new_game():
 	score = 0
 	$HUD.update_score(score)
