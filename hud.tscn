@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccqoreueuxdb7"]
+[gd_scene load_steps=6 format=3 uid="uid://ccqoreueuxdb7"]
 
 [ext_resource type="FontFile" uid="uid://cit6gwe5px1q8" path="res://fonts/Xolonium-Regular.ttf" id="1_0mnvc"]
 [ext_resource type="Script" path="res://hud.gd" id="1_dj2i1"]
+[ext_resource type="Script" path="res://start_button.gd" id="3_48giq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lb2tj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6wxqm"]
 
@@ -48,27 +51,32 @@ autowrap_mode = 2
 wait_time = 2.0
 one_shot = true
 
-[node name="StartButton" type="Label" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = -31.0
-offset_right = 23.0
+offset_left = -1.0
+offset_top = -140.0
+offset_right = -1.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(2, 2)
+scale = Vector2(1.003, 1)
 size_flags_horizontal = 3
 size_flags_vertical = 8
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lb2tj")
 text = "Start
 
 
 "
+flat = true
+script = ExtResource("3_48giq")
 
 [node name="TouchButton" type="TouchScreenButton" parent="."]
 shape = SubResource("WorldBoundaryShape2D_6wxqm")
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="TouchButton" to="." method="_on_start_button_pressed"]

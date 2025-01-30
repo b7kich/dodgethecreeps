@@ -64,6 +64,7 @@ one_shot = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_55d8h")
+volume_db = -8.432
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_hp1r0")
